@@ -1,22 +1,26 @@
 <template>
   <div id="app">
-    <p>{{ message }}</p>
+    <CurrencyConverter class="center" />
   </div>
 </template>
 
 <script>
+import CurrencyConverter from "./CurrencyConverter"
+
 export default {
-  data: function () {
-    return {
-      message: "Hello Vue!"
-    }
+  components: {
+    CurrencyConverter
   }
 }
 </script>
 
-<style scoped>
+<style>
 p {
   font-size: 2em;
+  text-align: center;
+}
+
+.center {
   text-align: center;
 }
 </style>
