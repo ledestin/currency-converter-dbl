@@ -14,7 +14,7 @@ module Bank
     new_bank = Money::Bank::OpenExchangeRatesBank.new
     new_bank.app_id = ENV["OXR_APP_ID"]
 
-    yield new_bank
+    yield new_bank if block_given?
 
     new_bank.update_rates
     new_bank
