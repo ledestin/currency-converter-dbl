@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Bank do
   describe ".get" do
-    let(:date_in_the_past) { Date.parse "2015-01-18" }
+    let(:date_in_the_past) { "2015-01-18" }
     let(:bank_in_the_past) do
       Bank.get date_in_the_past do |bank|
         bank.cache = "spec/fixtures/rates-2015-01-18.json"
@@ -21,6 +21,10 @@ describe Bank do
       one_nzd_in_usd_in_the_past = Money.new(100, "NZD", bank_in_the_past)
         .exchange_to("USD")
       expect(one_nzd_in_usd_in_the_past.cents).to eq 79
+    end
+
+    it "sets appropriate date for a new bank" do
+      expect(Bank.get(date_in_the_past).date).to eq "2015-01-18"
     end
   end
 end
