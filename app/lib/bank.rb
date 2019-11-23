@@ -8,6 +8,10 @@ module Bank
     @cache[date] ||= create(date, &b)
   end
 
+  def self.available_currencies
+    get(:today).oer_rates.keys
+  end
+
   private
 
   def self.create(date)
