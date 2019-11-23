@@ -17,7 +17,7 @@ module Bank
   def self.create(date)
     new_bank = Money::Bank::OpenExchangeRatesBank.new
     new_bank.app_id = ENV["OXR_APP_ID"]
-    new_bank.date = date
+    new_bank.date = date unless date == :today
 
     yield new_bank if block_given?
 

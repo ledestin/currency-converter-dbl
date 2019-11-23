@@ -26,5 +26,9 @@ describe Bank do
     it "sets appropriate date for a new bank" do
       expect(Bank.get(date_in_the_past).date).to eq "2015-01-18"
     end
+
+    it "doesn't set date for :today date" do
+      expect(Bank.get(:today).date).to be_nil
+    end
   end
 end
