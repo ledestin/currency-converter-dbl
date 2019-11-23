@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Convert currency</h1>
-    <input type="number" step="0.01" />
+    <input type="number" step="0.01" v-model="amount"/>
     <select>
       <option v-for="currency in availableCurrencies">{{ currency }}</option>
     </select>
@@ -24,6 +24,7 @@ export default {
   data() {
     return {
       availableCurrencies: [],
+      amount: 1,
       from: "1 NZD",
       to: "0.64 USD"
     }
