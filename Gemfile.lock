@@ -282,6 +282,7 @@ DEPENDENCIES
   honeybadger
   launchy
   listen
+  money
   money-open-exchange-rates
   pg
   pry-byebug

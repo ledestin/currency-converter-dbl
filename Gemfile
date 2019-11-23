@@ -24,6 +24,7 @@ gem "title"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 gem "webpacker"
 gem "money-open-exchange-rates"
+gem "money"
 
 group :development do
   gem "listen"

@@ -1,4 +1,4 @@
-ActiveSupport.on_load(:bank) do
+ActiveSupport.on_load(:active_record) do
   Money.locale_backend = :i18n
   I18n.locale = :en
 
