@@ -29,10 +29,15 @@ export default {
       to: "0.64 USD"
     }
   },
+  methods: {
+    fetchAvailableCurrencies() {
+      axios.get("/currencies").then(response => {
+        this.availableCurrencies = response.data.available_currencies
+      })
+    }
+  },
   mounted() {
-    axios.get("/currencies").then(response => {
-      this.availableCurrencies = response.data.available_currencies
-    })
+    this.fetchAvailableCurrencies()
   }
 }
 </script>
