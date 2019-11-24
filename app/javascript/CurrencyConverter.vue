@@ -12,7 +12,7 @@
       <select name="to_currency" v-model="to">
         <option v-for="currency in availableCurrencies">{{ currency }}</option>
       </select>
-      <button type="submit" @click.prevent="convertAmount">></button>
+      <button type="submit" @click.prevent="convertCurrency">></button>
     </form>
 
     <br/>
@@ -56,7 +56,7 @@ export default {
     hideConversionOutput() {
       this.showConversionOutput = false
     },
-    convertAmount() {
+    convertCurrency() {
       const form = document.getElementById("convert_form")
       const formData = new FormData(form)
       const queryString = new URLSearchParams(formData).toString()
