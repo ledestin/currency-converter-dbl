@@ -1,19 +1,23 @@
 <template>
   <div>
     <h1>Convert currency</h1>
-    <input type="number" step="0.01" v-model="amount"/>
-    <select>
-      <option v-for="currency in availableCurrencies">{{ currency }}</option>
-    </select>
-    <button><--></button>
-    <select>
-      <option v-for="currency in availableCurrencies">{{ currency }}</option>
-    </select>
-    <button>></button>
+    <form id="convert_form">
+      <input name="amount" type="number" step="0.01" v-model="amount"/>
+      <select name="from_currency" v-model="from">
+        <option v-for="currency in availableCurrencies">{{ currency }}</option>
+      </select>
+      <button><--></button>
+      <select name="to_currency" v-model="to">
+        <option v-for="currency in availableCurrencies">{{ currency }}</option>
+      </select>
+      <button type="submit" @click.prevent="convertAmount">></button>
+    </form>
 
     <br/>
-    <h4>{{ from }} =</h4>
-    <h1>{{ to }}</h1>
+    <div v-if="showConversionOutput">
+      <h4>{{ amount }} {{ from }} =</h4>
+      <h1>{{ convertedAmount }} {{ to }}</h1>
+    </div>
   </div>
 </template>
 
@@ -25,11 +29,37 @@ export default {
     return {
       availableCurrencies: [],
       amount: 1,
-      from: "1 NZD",
-      to: "0.64 USD"
+      convertedAmount: null,
+      from: "NZD",
+      to: "USD",
+      showConversionOutput: false
+    }
+  },
+  watch: {
+    amount() {
+      this.hideConversionOutput()
+    },
+    from() {
+      this.hideConversionOutput()
+    },
+    to() {
+      this.hideConversionOutput()
     }
   },
   methods: {
+    hideConversionOutput() {
+      this.showConversionOutput = false
+    },
+    convertAmount() {
+      const form = document.getElementById("convert_form")
+      const formData = new FormData(form)
+      const queryString = new URLSearchParams(formData).toString()
+
+      axios.get(`/convert?${queryString}`).then(response => {
+        this.convertedAmount = response.data.converted_amount
+        this.showConversionOutput = true
+      })
+    },
     fetchAvailableCurrencies() {
       axios.get("/currencies").then(response => {
         this.availableCurrencies = response.data.available_currencies
