@@ -8,7 +8,7 @@
       <select name="from_currency" v-model="from">
         <option v-for="currency in availableCurrencies">{{ currency }}</option>
       </select>
-      <button><--></button>
+      <button @click.prevent="swapCurrencies"><--></button>
       <select name="to_currency" v-model="to">
         <option v-for="currency in availableCurrencies">{{ currency }}</option>
       </select>
@@ -70,6 +70,9 @@ export default {
       axios.get("/currencies").then(response => {
         this.availableCurrencies = response.data.available_currencies
       })
+    },
+    swapCurrencies() {
+      [this.to, this.from] = [this.from, this.to]
     }
   },
   mounted() {
