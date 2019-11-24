@@ -31,11 +31,11 @@ export default {
     return {
       availableCurrencies: [],
       amount: 1,
-      convertedAmount: null,
       from: "NZD",
       to: "USD",
       date: null,
-      showConversionOutput: false
+      showConversionOutput: false,
+      convertedAmount: null
     }
   },
   watch: {
