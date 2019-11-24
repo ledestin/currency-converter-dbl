@@ -12,6 +12,12 @@ module Bank
     get(:today).oer_rates.keys
   end
 
+  def self.convert(amount, from_currency, to_currency, date = :today)
+    bank = get date
+
+    Money.from_amount(amount, from_currency, bank).exchange_to(to_currency)
+  end
+
   private
 
   def self.create(date)
