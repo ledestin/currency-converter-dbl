@@ -5,6 +5,7 @@ module Bank
 
   # WARNING: Ignore being thread-safe for now.
   def self.get(date = :today, &b)
+    date = :today if date.blank?
     @cache[date] ||= create(date, &b)
   end
 

@@ -2,6 +2,8 @@
   <div>
     <h1>Convert currency</h1>
     <form id="convert_form">
+      <input name="date" type="date" v-model="date" />
+      <br/>
       <input name="amount" type="number" step="0.01" v-model="amount"/>
       <select name="from_currency" v-model="from">
         <option v-for="currency in availableCurrencies">{{ currency }}</option>
@@ -32,6 +34,7 @@ export default {
       convertedAmount: null,
       from: "NZD",
       to: "USD",
+      date: null,
       showConversionOutput: false
     }
   },
@@ -43,6 +46,9 @@ export default {
       this.hideConversionOutput()
     },
     to() {
+      this.hideConversionOutput()
+    },
+    date() {
       this.hideConversionOutput()
     }
   },
