@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Available currencies" do
-  let(:response_json) { JSON.parse response.body }
+  include_context "requests"
 
   it "gets list of available currencies" do
     get "/currencies"

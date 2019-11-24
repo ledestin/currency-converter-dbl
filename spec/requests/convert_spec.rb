@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "Currency conversion" do
-  let(:response_json) { JSON.parse response.body }
+  include_context "requests"
   include_context "banks"
 
   it "converts 1 NZD to USD" do
