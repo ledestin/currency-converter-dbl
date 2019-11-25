@@ -11,7 +11,7 @@ it.
 As far as code quality goes, I feel it's fine, but there are lots of things that
 can be improved.
 
-* I usually take error handlinb very seriously, but have done none of it in this
+* I usually take error handling very seriously, but have done none of it in this
     project.
 * In test env, I'd like to migrate to `Bank` that is always set up for tests,
     instead of mocking as it's done now. `Bank = Rails.env.test? TestBank :
