@@ -4,7 +4,7 @@
     <form id="convert_form">
       <input name="date" type="date" v-model="date" />
       <br/>
-      <input name="amount" type="number" step="0.01" v-model="amount"/>
+      <input name="amount" type="number" step="0.01" v-model="sourceAmount"/>
       <select name="source_currency" v-model="sourceCurrency">
         <option v-for="currency in availableCurrencies">{{ currency }}</option>
       </select>
@@ -17,8 +17,8 @@
 
     <br/>
     <div v-if="showConversionOutput">
-      <h4>{{ amount }} {{ sourceCurrency }} =</h4>
-      <h1>{{ convertedAmount }} {{ destinationCurrency }}</h1>
+      <h4>{{ sourceAmount }} {{ sourceCurrency }} =</h4>
+      <h1>{{ destinationAmount }} {{ destinationCurrency }}</h1>
     </div>
   </div>
 </template>
@@ -30,16 +30,16 @@ export default {
   data() {
     return {
       availableCurrencies: [],
-      amount: 1,
+      sourceAmount: 1,
       sourceCurrency: "NZD",
       destinationCurrency: "USD",
       date: null,
       showConversionOutput: false,
-      convertedAmount: null
+      destinationAmount: null
     }
   },
   watch: {
-    amount() {
+    sourceAmount() {
       this.hideConversionOutput()
     },
     sourceCurrency() {
@@ -62,7 +62,7 @@ export default {
       const queryString = new URLSearchParams(formData).toString()
 
       axios.get(`/convert?${queryString}`).then(response => {
-        this.convertedAmount = response.data.converted_amount
+        this.destinationAmount = response.data.converted_amount
         this.showConversionOutput = true
       })
     },
