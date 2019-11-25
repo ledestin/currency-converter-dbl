@@ -48,6 +48,7 @@ group :test do
   gem "timecop"
   gem "webmock"
   gem "rspec-rails"
+  gem "webdrivers", "~> 4.0"
 end
 
 gem "suspenders", group: [:development, :test]
