@@ -8,7 +8,7 @@ describe "Currency conversion" do
     allow(Bank).to receive(:get).and_return(bank_today)
 
     get "/convert", params: {
-      amount: 1, from_currency: "NZD", to_currency: "USD"
+      amount: 1, source_currency: "NZD", destination_currency: "USD"
     }
 
     expect(response).to have_http_status(:ok)

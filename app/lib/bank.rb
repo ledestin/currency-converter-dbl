@@ -6,6 +6,7 @@ module Bank
   # WARNING: Ignore being thread-safe for now.
   def self.get(date = :today, &b)
     date = :today if date.blank?
+
     @cache[date] ||= create(date, &b)
   end
 
@@ -13,10 +14,11 @@ module Bank
     get(:today).oer_rates.keys
   end
 
-  def self.convert(amount, from_currency, to_currency, date = :today)
+  def self.convert(amount, source_currency, destination_currency, date = :today)
     bank = get date
 
-    Money.from_amount(amount, from_currency, bank).exchange_to(to_currency)
+    Money.from_amount(amount, source_currency, bank)
+      .exchange_to(destination_currency)
   end
 
   private

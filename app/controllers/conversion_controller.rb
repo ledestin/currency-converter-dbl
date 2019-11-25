@@ -1,13 +1,13 @@
 class ConversionController < ApplicationController
   def index
     amount = Float(params[:amount])
-    from_currency = params[:from_currency]
-    to_currency = params[:to_currency]
+    source_currency = params[:source_currency]
+    destination_currency = params[:destination_currency]
     date = params[:date]
 
     render json: {
-      converted_amount: Bank.convert(amount, from_currency, to_currency, date)
-        .format
+      converted_amount: Bank.convert(amount, source_currency,
+                                     destination_currency, date).format
     }
   end
 end
